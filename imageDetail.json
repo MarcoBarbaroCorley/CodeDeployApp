@@ -1,6 +1,4 @@
-[
-  {
-    "name": "sample-web",
-    "imageUri": "023834798936.dkr.ecr.eu-central-1.amazonaws.com/nginx:latest"
-  }
-]
+{
+  "imageURI": "023834798936.dkr.ecr.eu-central-1.amazonaws.com/nginx:latest"
+}
+
