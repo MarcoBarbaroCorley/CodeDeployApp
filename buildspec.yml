@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
+      - docker pull $ECR_IMAGE_NAME
+  build:
+    commands:
+      - docker tag $ECR_IMAGE_NAME:$Version $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$ECR_IMAGE_NAME:$Version    
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$ECR_IMAGE_NAME:$Version
+      - |
+      	cat <<'EOF' > imageDetail.json
+      	{"ImageURI":"$ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$ECR_IMAGE_NAME:$Version"}

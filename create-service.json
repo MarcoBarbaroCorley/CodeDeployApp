@@ -1,10 +1,10 @@
 {
-    "taskDefinition": "ecs-demo:1",
-    "cluster": "Test-ECS",
+    "taskDefinition": "ecs-demo:6",
+    "cluster": "test",
     "loadBalancers": [
         {
             "targetGroupArn": "arn:aws:elasticloadbalancing:eu-central-1:023834798936:targetgroup/target-group-1/780556974ec42fa6",
-            "containerName": "sample-website",
+            "containerName": "nginx-task",
             "containerPort": 80
         }
     ],
